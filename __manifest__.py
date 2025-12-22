@@ -8,14 +8,29 @@
 Sale Stock Multi-Warehouse Availability
 =======================================
 
-This module extends the stock availability popup in Sales Order lines to show
+This module extends the stock availability popup in Sales Order lines to display
 stock information from ALL warehouses, not just the warehouse selected on the
-Sales Order.
+Sales Order. It enables sales teams to make informed fulfillment decisions by
+providing complete visibility into inventory across the entire warehouse network.
 
-Features:
-- Shows a breakdown of stock per warehouse in the availability popup
-- Displays Available and Forecasted quantities for each warehouse
-- Highlights the current order's warehouse
+Features
+--------
+* Multi-warehouse stock display in a single popup
+* Per-warehouse breakdown of Available and Forecasted quantities
+* Current order warehouse highlighted and displayed first
+* Aggregated totals across all warehouses
+* Smart filtering to show only warehouses with stock
+* Color-coded quantities for quick visual assessment
+* Non-intrusive extension of standard Odoo workflows
+
+Technical Details
+-----------------
+* Extends sale.order.line with computed warehouse stock data
+* Patches the QtyAtDateWidget frontend component
+* Uses efficient batch processing with caching for performance
+
+Author: John Ashurst
+Company: SJR Nebula
     """,
     "author": "SJR Nebula",
     "depends": ["sale_stock"],
