@@ -4,43 +4,43 @@
     <t t-name="sale_stock_multi_warehouse.QtyAtDatePopover" t-inherit="sale_stock.QtyAtDatePopover" t-inherit-mode="extension">
         <xpath expr="//button[hasclass('btn-link')]" position="before">
             <t t-if="props.warehouseStockInfo and props.warehouseStockInfo.length >= 1">
-                <hr class="my-2"/>
-                <h6 class="mb-2">
-                    <i class="fa fa-building me-1"/>
-                    Stock by Warehouse
-                </h6>
-                <table class="table table-sm table-borderless mb-0">
+                <hr class="my-3" style="border-top: 1px solid #dee2e6;"/>
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa fa-warehouse me-2" style="color: #6c757d; font-size: 1.1em;"/>
+                    <span style="font-weight: 600; font-size: 0.95em; color: #495057;">Stock by Warehouse</span>
+                </div>
+                <table class="table table-sm mb-0" style="font-size: 0.9em;">
                     <thead>
-                        <tr class="text-muted small">
-                            <th>Warehouse</th>
-                            <th class="text-end">Available</th>
-                            <th class="text-end">Forecasted</th>
+                        <tr style="border-bottom: 2px solid #dee2e6;">
+                            <th style="font-weight: 700; color: #212529; padding: 8px 4px;">Warehouse</th>
+                            <th class="text-end" style="font-weight: 700; color: #212529; padding: 8px 4px;">Available</th>
+                            <th class="text-end" style="font-weight: 700; color: #212529; padding: 8px 4px;">Forecasted</th>
                         </tr>
                     </thead>
                     <tbody>
                         <t t-foreach="props.warehouseStockInfo" t-as="wh" t-key="wh.warehouse_id">
-                            <tr t-att-class="wh.is_current ? 'bg-light' : ''" t-att-style="wh.is_current ? 'background-color: #f8f9fa !important;' : ''">
-                                <td>
-                                    <span t-out="wh.warehouse_name"/>
-                                    <span t-if="wh.is_current" class="badge text-muted ms-1" style="background-color: #e9ecef; font-weight: normal;">Current</span>
+                            <tr t-att-style="wh.is_current ? 'background-color: #e8f4fd;' : ''">
+                                <td style="padding: 6px 4px; vertical-align: middle;">
+                                    <span t-out="wh.warehouse_name" t-att-style="wh.is_current ? 'font-weight: 500;' : ''"/>
+                                    <span t-if="wh.is_current" class="ms-2" style="background-color: #0d6efd; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.7em; font-weight: 500; text-transform: uppercase;">Current</span>
                                 </td>
-                                <td class="text-end">
+                                <td class="text-end" style="padding: 6px 4px; vertical-align: middle; font-weight: 500;">
                                     <span t-out="wh.free_qty" t-att-class="wh.free_qty &lt; 0 ? 'text-danger' : (wh.free_qty > 0 ? 'text-success' : '')"/>
                                 </td>
-                                <td class="text-end">
+                                <td class="text-end" style="padding: 6px 4px; vertical-align: middle; font-weight: 500;">
                                     <span t-out="wh.virtual_available" t-att-class="wh.virtual_available &lt; 0 ? 'text-danger' : (wh.virtual_available > 0 ? 'text-success' : '')"/>
                                 </td>
                             </tr>
                         </t>
                     </tbody>
                     <tfoot>
-                        <tr class="fw-bold border-top" style="border-top: 2px solid #dee2e6 !important;">
-                            <td><strong>TOTAL (All Warehouses)</strong></td>
-                            <td class="text-end">
+                        <tr style="border-top: 2px solid #495057; background-color: #f8f9fa;">
+                            <td style="padding: 8px 4px; font-weight: 700; color: #212529;">Total</td>
+                            <td class="text-end" style="padding: 8px 4px; font-weight: 700;">
                                 <t t-set="total_available" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.free_qty, 0)"/>
                                 <span t-out="total_available" t-att-class="total_available &lt; 0 ? 'text-danger' : (total_available > 0 ? 'text-success' : '')"/>
                             </td>
-                            <td class="text-end">
+                            <td class="text-end" style="padding: 8px 4px; font-weight: 700;">
                                 <t t-set="total_forecasted" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.virtual_available, 0)"/>
                                 <span t-out="total_forecasted" t-att-class="total_forecasted &lt; 0 ? 'text-danger' : (total_forecasted > 0 ? 'text-success' : '')"/>
                             </td>
