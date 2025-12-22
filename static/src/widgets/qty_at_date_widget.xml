@@ -25,10 +25,10 @@
                                     <span t-if="wh.is_current" class="badge text-muted ms-1" style="background-color: #e9ecef; font-weight: normal;">Current</span>
                                 </td>
                                 <td class="text-end">
-                                    <span t-out="wh.free_qty" t-att-class="wh.free_qty &lt;= 0 ? 'text-danger' : 'text-success'"/>
+                                    <span t-out="wh.free_qty" t-att-class="wh.free_qty &lt; 0 ? 'text-danger' : (wh.free_qty > 0 ? 'text-success' : '')"/>
                                 </td>
                                 <td class="text-end">
-                                    <span t-out="wh.virtual_available" t-att-class="wh.virtual_available &lt;= 0 ? 'text-danger' : ''"/>
+                                    <span t-out="wh.virtual_available" t-att-class="wh.virtual_available &lt; 0 ? 'text-danger' : (wh.virtual_available > 0 ? 'text-success' : '')"/>
                                 </td>
                             </tr>
                         </t>
@@ -38,11 +38,11 @@
                             <td><strong>TOTAL (All Warehouses)</strong></td>
                             <td class="text-end">
                                 <t t-set="total_available" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.free_qty, 0)"/>
-                                <span t-out="total_available" t-att-class="total_available &lt;= 0 ? 'text-danger' : 'text-success'"/>
+                                <span t-out="total_available" t-att-class="total_available &lt; 0 ? 'text-danger' : (total_available > 0 ? 'text-success' : '')"/>
                             </td>
                             <td class="text-end">
                                 <t t-set="total_forecasted" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.virtual_available, 0)"/>
-                                <span t-out="total_forecasted" t-att-class="total_forecasted &lt;= 0 ? 'text-danger' : ''"/>
+                                <span t-out="total_forecasted" t-att-class="total_forecasted &lt; 0 ? 'text-danger' : (total_forecasted > 0 ? 'text-success' : '')"/>
                             </td>
                         </tr>
                     </tfoot>
