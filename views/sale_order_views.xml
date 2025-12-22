@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit_multi_warehouse" model="ir.ui.view">
+        <field name="name">sale.order.form.multi.warehouse</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock_qty"/>
+        <field name="arch" type="xml">
+            <!-- Add warehouse_stock_info field to form view (for popup) -->
+            <xpath expr="//page/field[@name='order_line']/form//field[@name='display_qty_widget']" position="after">
+                <field name="warehouse_stock_info" invisible="1"/>
+            </xpath>
+            <!-- Add warehouse_stock_info field to tree view -->
+            <xpath expr="//page/field[@name='order_line']/tree/field[@name='display_qty_widget']" position="after">
+                <field name="warehouse_stock_info" column_invisible="True"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

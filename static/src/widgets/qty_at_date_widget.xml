@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="sale_stock_multi_warehouse.QtyAtDatePopover" t-inherit="sale_stock.QtyAtDatePopover" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('btn-link')]" position="before">
+            <t t-if="props.warehouseStockInfo and props.warehouseStockInfo.length >= 1">
+                <hr class="my-2"/>
+                <h6 class="mb-2">
+                    <i class="fa fa-building me-1"/>
+                    Stock by Warehouse
+                </h6>
+                <table class="table table-sm table-borderless mb-0">
+                    <thead>
+                        <tr class="text-muted small">
+                            <th>Warehouse</th>
+                            <th class="text-end">Available</th>
+                            <th class="text-end">Forecasted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.warehouseStockInfo" t-as="wh" t-key="wh.warehouse_id">
+                            <tr t-att-class="wh.is_current ? 'bg-light' : ''" t-att-style="wh.is_current ? 'background-color: #f8f9fa !important;' : ''">
+                                <td>
+                                    <span t-out="wh.warehouse_name"/>
+                                    <span t-if="wh.is_current" class="badge text-muted ms-1" style="background-color: #e9ecef; font-weight: normal;">Current</span>
+                                </td>
+                                <td class="text-end">
+                                    <span t-out="wh.free_qty" t-att-class="wh.free_qty &lt;= 0 ? 'text-danger' : 'text-success'"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-out="wh.virtual_available" t-att-class="wh.virtual_available &lt;= 0 ? 'text-danger' : ''"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr class="fw-bold border-top" style="border-top: 2px solid #dee2e6 !important;">
+                            <td><strong>TOTAL (All Warehouses)</strong></td>
+                            <td class="text-end">
+                                <t t-set="total_available" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.free_qty, 0)"/>
+                                <span t-out="total_available" t-att-class="total_available &lt;= 0 ? 'text-danger' : 'text-success'"/>
+                            </td>
+                            <td class="text-end">
+                                <t t-set="total_forecasted" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.virtual_available, 0)"/>
+                                <span t-out="total_forecasted" t-att-class="total_forecasted &lt;= 0 ? 'text-danger' : ''"/>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
