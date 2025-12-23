@@ -1,394 +1,723 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        color: #212529;
-        line-height: 1.6;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      .header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 40px;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-      .header h1 {
-        margin: 0 0 10px 0;
-        font-size: 2em;
-      }
-      .header p {
-        margin: 0;
-        opacity: 0.9;
-        font-size: 1.1em;
-      }
-      .section {
-        margin-bottom: 30px;
-      }
-      .section h2 {
-        color: #495057;
-        border-bottom: 2px solid #667eea;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-      }
-      .section h3 {
-        color: #6c757d;
-        margin-top: 25px;
-      }
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-      }
-      .feature-card {
-        background: #f8f9fa;
-        border-left: 4px solid #667eea;
-        padding: 20px;
-        border-radius: 0 8px 8px 0;
-      }
-      .feature-card h4 {
-        margin: 0 0 10px 0;
-        color: #495057;
-      }
-      .feature-card p {
-        margin: 0;
-        color: #6c757d;
-        font-size: 0.95em;
-      }
-      .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-      .comparison-table th,
-      .comparison-table td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #dee2e6;
-      }
-      .comparison-table th {
-        background: #f8f9fa;
-        font-weight: 600;
-        color: #495057;
-      }
-      .comparison-table tr:hover {
-        background: #f8f9fa;
-      }
-      .check {
-        color: #28a745;
-        font-weight: bold;
-      }
-      .cross {
-        color: #dc3545;
-      }
-      .example-popup {
-        background: white;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-top: 20px;
-      }
-      .example-popup h5 {
-        margin: 0 0 15px 0;
-        color: #495057;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 600;
-      }
-      .example-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.9em;
-      }
-      .example-table th {
-        text-align: left;
-        padding: 10px 8px;
-        color: #212529;
-        font-weight: 700;
-        border-bottom: 2px solid #dee2e6;
-      }
-      .example-table td {
-        padding: 8px;
-        font-weight: 500;
-      }
-      .example-table .current-row {
-        background: #e8f4fd;
-      }
-      .example-table .current-row td:first-child {
-        font-weight: 500;
-      }
-      .badge {
-        background: #0d6efd;
-        color: white;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-size: 0.7em;
-        margin-left: 8px;
-        font-weight: 500;
-        text-transform: uppercase;
-      }
-      .text-success {
-        color: #28a745;
-      }
-      .text-danger {
-        color: #dc3545;
-      }
-      .total-row {
-        font-weight: 700;
-        border-top: 2px solid #495057;
-        background: #f8f9fa;
-      }
-      .total-row td {
-        padding: 10px 8px;
-      }
-      .tech-list {
-        list-style: none;
-        padding: 0;
-      }
-      .tech-list li {
-        padding: 8px 0;
-        border-bottom: 1px solid #f1f3f4;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      .tech-list li:last-child {
-        border-bottom: none;
-      }
-      .tech-list .icon {
-        color: #667eea;
-        font-weight: bold;
-      }
-      .author-section {
-        background: #f8f9fa;
-        padding: 25px;
-        border-radius: 8px;
-        text-align: center;
-        margin-top: 30px;
-      }
-      .author-section h3 {
-        margin: 0 0 5px 0;
-        color: #495057;
-      }
-      .author-section p {
-        margin: 0;
-        color: #6c757d;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="header">
-      <h1>Sale Stock Multi-Warehouse Availability</h1>
-      <p>
-        Complete visibility into stock availability across all warehouses from
-        your Sales Orders
-      </p>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <div
+        style="
+          background: linear-gradient(135deg, #714b67 0%, #875a7b 100%);
+          color: white;
+          padding: 30px 40px;
+          border-radius: 8px;
+          margin-bottom: 30px;
+        "
+      >
+        <h2
+          style="
+            color: white;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 600;
+          "
+        >
+          Sale Stock Multi-Warehouse Availability
+        </h2>
+        <p style="margin: 0; opacity: 0.95; font-size: 16px">
+          Complete visibility into stock availability across all warehouses from
+          your Sales Orders
+        </p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Overview</h2>
-      <p>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Overview
+      </h3>
+      <p style="font-size: 15px; line-height: 1.7; color: #333">
         In standard Odoo, when you click on the stock availability indicator on
         a Sales Order line, you only see stock information for the warehouse
         assigned to that order. This limitation forces sales teams to manually
         check multiple warehouses or switch between screens to find available
         stock.
       </p>
-      <p>
+      <p style="font-size: 15px; line-height: 1.7; color: #333">
         <strong>Sale Stock Multi-Warehouse Availability</strong> solves this
         problem by enhancing the stock availability popup to display a complete
         breakdown of stock levels across your entire warehouse network - all in
         one place.
       </p>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Before vs After</h2>
-      <table class="comparison-table">
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Before vs After
+      </h3>
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 15px;
+          font-size: 14px;
+        "
+      >
         <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Standard Odoo</th>
-            <th>With This Module</th>
+          <tr style="background: #f5f5f5">
+            <th
+              style="
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 2px solid #ddd;
+                font-weight: 600;
+                color: #333;
+              "
+            >
+              Feature
+            </th>
+            <th
+              style="
+                padding: 12px 15px;
+                text-align: center;
+                border-bottom: 2px solid #ddd;
+                font-weight: 600;
+                color: #333;
+              "
+            >
+              Standard Odoo
+            </th>
+            <th
+              style="
+                padding: 12px 15px;
+                text-align: center;
+                border-bottom: 2px solid #ddd;
+                font-weight: 600;
+                color: #333;
+              "
+            >
+              With This Module
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>View stock from order warehouse</td>
-            <td class="check">Yes</td>
-            <td class="check">Yes</td>
+            <td style="padding: 10px 15px; border-bottom: 1px solid #eee">
+              View stock from order warehouse
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #28a745;
+                font-weight: 600;
+              "
+            >
+              Yes
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #28a745;
+                font-weight: 600;
+              "
+            >
+              Yes
+            </td>
+          </tr>
+          <tr style="background: #fafafa">
+            <td style="padding: 10px 15px; border-bottom: 1px solid #eee">
+              View stock from all warehouses
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #dc3545;
+              "
+            >
+              No
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #28a745;
+                font-weight: 600;
+              "
+            >
+              Yes
+            </td>
           </tr>
           <tr>
-            <td>View stock from all warehouses</td>
-            <td class="cross">No</td>
-            <td class="check">Yes</td>
+            <td style="padding: 10px 15px; border-bottom: 1px solid #eee">
+              Per-warehouse breakdown
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #dc3545;
+              "
+            >
+              No
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #28a745;
+                font-weight: 600;
+              "
+            >
+              Yes
+            </td>
+          </tr>
+          <tr style="background: #fafafa">
+            <td style="padding: 10px 15px; border-bottom: 1px solid #eee">
+              Total stock across all locations
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #dc3545;
+              "
+            >
+              No
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #28a745;
+                font-weight: 600;
+              "
+            >
+              Yes
+            </td>
           </tr>
           <tr>
-            <td>Per-warehouse breakdown</td>
-            <td class="cross">No</td>
-            <td class="check">Yes</td>
-          </tr>
-          <tr>
-            <td>Total stock across all locations</td>
-            <td class="cross">No</td>
-            <td class="check">Yes</td>
-          </tr>
-          <tr>
-            <td>Current warehouse highlighting</td>
-            <td>N/A</td>
-            <td class="check">Yes</td>
+            <td style="padding: 10px 15px; border-bottom: 1px solid #eee">
+              Current warehouse highlighting
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #999;
+              "
+            >
+              N/A
+            </td>
+            <td
+              style="
+                padding: 10px 15px;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                color: #28a745;
+                font-weight: 600;
+              "
+            >
+              Yes
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Example Popup</h2>
-      <p>Here is how the enhanced stock availability popup appears:</p>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Example Popup
+      </h3>
+      <p style="font-size: 15px; color: #333; margin-bottom: 15px">
+        Here is how the enhanced stock availability popup appears:
+      </p>
 
-      <div class="example-popup">
-        <h5>
-          <span>Stock by Warehouse</span>
-        </h5>
-        <table class="example-table">
+      <div
+        style="
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          max-width: 500px;
+        "
+      >
+        <div style="display: flex; align-items: center; margin-bottom: 15px">
+          <span style="font-weight: 600; font-size: 14px; color: #333"
+            >Stock by Warehouse</span
+          >
+        </div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px">
           <thead>
             <tr>
-              <th>Warehouse</th>
-              <th style="text-align: right">Available</th>
-              <th style="text-align: right">Forecasted</th>
+              <th
+                style="
+                  padding: 8px;
+                  text-align: left;
+                  font-weight: 700;
+                  color: #212529;
+                  border-bottom: 2px solid #dee2e6;
+                "
+              >
+                Warehouse
+              </th>
+              <th
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  font-weight: 700;
+                  color: #212529;
+                  border-bottom: 2px solid #dee2e6;
+                "
+              >
+                Available
+              </th>
+              <th
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  font-weight: 700;
+                  color: #212529;
+                  border-bottom: 2px solid #dee2e6;
+                "
+              >
+                Forecasted
+              </th>
             </tr>
           </thead>
           <tbody>
-            <tr class="current-row">
-              <td>Main Warehouse <span class="badge">Current</span></td>
-              <td style="text-align: right" class="text-success">50</td>
-              <td style="text-align: right" class="text-success">75</td>
+            <tr style="background: #e8f4fd">
+              <td style="padding: 8px">
+                Main Warehouse
+                <span
+                  style="
+                    background: #0d6efd;
+                    color: white;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                    font-size: 10px;
+                    margin-left: 6px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                  "
+                  >Current</span
+                >
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  color: #28a745;
+                  font-weight: 500;
+                "
+              >
+                50
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  color: #28a745;
+                  font-weight: 500;
+                "
+              >
+                75
+              </td>
             </tr>
             <tr>
-              <td>Secondary Warehouse</td>
-              <td style="text-align: right" class="text-success">25</td>
-              <td style="text-align: right" class="text-success">30</td>
+              <td style="padding: 8px">Secondary Warehouse</td>
+              <td
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  color: #28a745;
+                  font-weight: 500;
+                "
+              >
+                25
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  color: #28a745;
+                  font-weight: 500;
+                "
+              >
+                30
+              </td>
             </tr>
             <tr>
-              <td>Distribution Center</td>
-              <td style="text-align: right">0</td>
-              <td style="text-align: right" class="text-danger">-5</td>
+              <td style="padding: 8px">Distribution Center</td>
+              <td style="padding: 8px; text-align: right; font-weight: 500">
+                0
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  text-align: right;
+                  color: #dc3545;
+                  font-weight: 500;
+                "
+              >
+                -5
+              </td>
             </tr>
-            <tr class="total-row">
-              <td>Total</td>
-              <td style="text-align: right" class="text-success">75</td>
-              <td style="text-align: right" class="text-success">100</td>
+            <tr style="background: #f8f9fa; border-top: 2px solid #495057">
+              <td style="padding: 10px 8px; font-weight: 700">Total</td>
+              <td
+                style="
+                  padding: 10px 8px;
+                  text-align: right;
+                  color: #28a745;
+                  font-weight: 700;
+                "
+              >
+                75
+              </td>
+              <td
+                style="
+                  padding: 10px 8px;
+                  text-align: right;
+                  color: #28a745;
+                  font-weight: 700;
+                "
+              >
+                100
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Key Features</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>Multi-Warehouse Display</h4>
-          <p>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Key Features
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px">
+        <div
+          style="
+            flex: 1 1 280px;
+            background: #f8f9fa;
+            border-left: 4px solid #714b67;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+          "
+        >
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              color: #333;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Multi-Warehouse Display
+          </h4>
+          <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.5">
             View stock availability from all warehouses in a single,
             consolidated popup.
           </p>
         </div>
-        <div class="feature-card">
-          <h4>Available and Forecasted</h4>
-          <p>
+        <div
+          style="
+            flex: 1 1 280px;
+            background: #f8f9fa;
+            border-left: 4px solid #714b67;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+          "
+        >
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              color: #333;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Available and Forecasted
+          </h4>
+          <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.5">
             See both current available quantities and forecasted stock levels
             per warehouse.
           </p>
         </div>
-        <div class="feature-card">
-          <h4>Current Warehouse Highlighted</h4>
-          <p>
+        <div
+          style="
+            flex: 1 1 280px;
+            background: #f8f9fa;
+            border-left: 4px solid #714b67;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+          "
+        >
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              color: #333;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Current Warehouse Highlighted
+          </h4>
+          <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.5">
             The order's assigned warehouse is clearly marked and shown first in
             the list.
           </p>
         </div>
-        <div class="feature-card">
-          <h4>Aggregated Totals</h4>
-          <p>Instantly see total stock across all warehouses at a glance.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Smart Filtering</h4>
-          <p>
-            Only warehouses with stock (plus the current warehouse) are
-            displayed to reduce clutter.
+        <div
+          style="
+            flex: 1 1 280px;
+            background: #f8f9fa;
+            border-left: 4px solid #714b67;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+          "
+        >
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              color: #333;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Aggregated Totals
+          </h4>
+          <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.5">
+            Instantly see total stock across all warehouses at a glance.
           </p>
         </div>
-        <div class="feature-card">
-          <h4>Color-Coded Quantities</h4>
-          <p>
-            Green for positive, black for zero, red for negative - for quick
-            visual assessment.
+        <div
+          style="
+            flex: 1 1 280px;
+            background: #f8f9fa;
+            border-left: 4px solid #714b67;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+          "
+        >
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              color: #333;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Smart Filtering
+          </h4>
+          <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.5">
+            Only warehouses with stock (plus the current warehouse) are
+            displayed.
+          </p>
+        </div>
+        <div
+          style="
+            flex: 1 1 280px;
+            background: #f8f9fa;
+            border-left: 4px solid #714b67;
+            padding: 15px 20px;
+            border-radius: 0 6px 6px 0;
+          "
+        >
+          <h4
+            style="
+              margin: 0 0 8px 0;
+              color: #333;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Color-Coded Quantities
+          </h4>
+          <p style="margin: 0; color: #666; font-size: 13px; line-height: 1.5">
+            Green for positive, black for zero, red for negative - quick visual
+            assessment.
           </p>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Technical Details</h2>
-      <ul class="tech-list">
-        <li>
-          <span class="icon">*</span>
-          <span
-            ><strong>Backend:</strong> Extends <code>sale.order.line</code> with
-            a computed field for warehouse stock data using efficient batch
-            processing</span
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Technical Details
+      </h3>
+      <ul style="list-style: none; padding: 0; margin: 0">
+        <li
+          style="
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #333;
+          "
+        >
+          <strong style="color: #714b67">Backend:</strong> Extends
+          <code
+            style="
+              background: #f4f4f4;
+              padding: 2px 6px;
+              border-radius: 3px;
+              font-size: 13px;
+            "
+            >sale.order.line</code
+          >
+          with a computed field for warehouse stock data using efficient batch
+          processing
+        </li>
+        <li
+          style="
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #333;
+          "
+        >
+          <strong style="color: #714b67">Frontend:</strong> Patches the standard
+          <code
+            style="
+              background: #f4f4f4;
+              padding: 2px 6px;
+              border-radius: 3px;
+              font-size: 13px;
+            "
+            >QtyAtDateWidget</code
+          >
+          component from
+          <code
+            style="
+              background: #f4f4f4;
+              padding: 2px 6px;
+              border-radius: 3px;
+              font-size: 13px;
+            "
+            >sale_stock</code
           >
         </li>
-        <li>
-          <span class="icon">*</span>
-          <span
-            ><strong>Frontend:</strong> Patches the standard
-            <code>QtyAtDateWidget</code> component from
-            <code>sale_stock</code></span
-          >
+        <li
+          style="
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #333;
+          "
+        >
+          <strong style="color: #714b67">Performance:</strong> Uses caching to
+          minimize database queries when computing stock for multiple warehouses
         </li>
-        <li>
-          <span class="icon">*</span>
-          <span
-            ><strong>Performance:</strong> Uses caching to minimize database
-            queries when computing stock for multiple warehouses</span
-          >
-        </li>
-        <li>
-          <span class="icon">*</span>
-          <span
-            ><strong>Compatibility:</strong> Works with both Odoo Community and
-            Enterprise editions</span
-          >
+        <li style="padding: 12px 0; font-size: 14px; color: #333">
+          <strong style="color: #714b67">Compatibility:</strong> Works with both
+          Odoo Community and Enterprise editions
         </li>
       </ul>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Dependencies</h2>
-      <p>This module requires the following Odoo module:</p>
-      <ul>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Dependencies
+      </h3>
+      <p style="font-size: 14px; color: #333">This module requires:</p>
+      <ul style="font-size: 14px; color: #333; line-height: 1.8">
         <li>
           <strong>sale_stock</strong> - Sales and Inventory integration
           (included in Odoo core)
         </li>
       </ul>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-      <h2>Installation</h2>
-      <ol>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3
+        style="
+          color: #714b67;
+          border-bottom: 2px solid #714b67;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        Installation
+      </h3>
+      <ol style="font-size: 14px; color: #333; line-height: 2">
         <li>Download the module and place it in your Odoo addons directory</li>
         <li>
           Update the apps list: <strong>Apps</strong> menu, then click
@@ -399,15 +728,33 @@
           <strong>Install</strong>
         </li>
       </ol>
-      <p>
-        No additional configuration is required. The enhanced popup is
-        immediately available on all Sales Order lines.
+      <p style="font-size: 14px; color: #666; margin-top: 15px">
+        No additional configuration required. The enhanced popup is immediately
+        available on all Sales Order lines.
       </p>
     </div>
+  </div>
+</section>
 
-    <div class="author-section">
-      <h3>SJR Nebula</h3>
-      <p>Developed by John Ashurst</p>
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <div
+        style="
+          background: #f8f9fa;
+          padding: 25px;
+          border-radius: 8px;
+          text-align: center;
+          margin-top: 20px;
+        "
+      >
+        <h4 style="margin: 0 0 5px 0; color: #714b67; font-size: 18px">
+          SJR Nebula
+        </h4>
+        <p style="margin: 0; color: #666; font-size: 14px">
+          Developed by John Ashurst
+        </p>
+      </div>
     </div>
-  </body>
-</html>
+  </div>
+</section>
