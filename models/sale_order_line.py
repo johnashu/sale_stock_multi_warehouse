@@ -14,21 +14,19 @@ class SaleOrderLine(models.Model):
         help="JSON data containing stock information for all warehouses",
     )
 
-    @api.depends(
-        "product_id", "scheduled_date", "order_id.warehouse_id", "display_qty_widget"
-    )
+    @api.depends("product_id", "scheduled_date", "order_id.warehouse_id", "order_id.company_id", "display_qty_widget")
     def _compute_warehouse_stock_info(self):
         """Compute stock availability for all warehouses as JSON data."""
-        all_warehouses = self.env["stock.warehouse"].search([])
+        # Only get warehouses from the current company
+        company_id = self.env.company.id
+        all_warehouses = self.env["stock.warehouse"].search([("company_id", "=", company_id)])
 
         if not all_warehouses:
             for line in self:
                 line.warehouse_stock_info = "[]"
             return
 
-        lines_to_compute = self.filtered(
-            lambda l: l.product_id and l.display_qty_widget
-        )
+        lines_to_compute = self.filtered(lambda l: l.product_id and l.display_qty_widget)
         lines_without_product = self - lines_to_compute
 
         for line in lines_without_product:
@@ -45,9 +43,7 @@ class SaleOrderLine(models.Model):
         scheduled_date = fields.Datetime.now()
 
         for warehouse in all_warehouses:
-            products_with_context = products.with_context(
-                to_date=scheduled_date, warehouse=warehouse.id
-            )
+            products_with_context = products.with_context(to_date=scheduled_date, warehouse=warehouse.id)
             product_data_list = products_with_context.read(
                 [
                     "id",
@@ -64,9 +60,7 @@ class SaleOrderLine(models.Model):
                     "virtual_available": product_data["virtual_available"],
                 }
 
-        warehouse_info = {
-            wh.id: {"name": wh.name, "code": wh.code} for wh in all_warehouses
-        }
+        warehouse_info = {wh.id: {"name": wh.name, "code": wh.code} for wh in all_warehouses}
 
         for line in lines_to_compute:
             product_id = line.product_id.id
@@ -80,9 +74,7 @@ class SaleOrderLine(models.Model):
                 free_qty = wh_stock.get("free_qty", 0)
                 virtual_available = wh_stock.get("virtual_available", 0)
 
-                has_stock = (
-                    qty_available != 0 or free_qty != 0 or virtual_available != 0
-                )
+                has_stock = qty_available != 0 or free_qty != 0 or virtual_available != 0
                 is_current = warehouse.id == current_warehouse_id
 
                 if has_stock or is_current:
