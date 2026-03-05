@@ -33,6 +33,8 @@ Author: John Ashurst
 Company: SJR Nebula
     """,
     "author": "SJR Nebula",
+    "website": "https://sjr.ie",
+    "support": "info@sjr.ie",
     "depends": ["sale_stock"],
     "data": [
         "views/sale_order_views.xml",
