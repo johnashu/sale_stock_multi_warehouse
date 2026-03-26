@@ -47,6 +47,9 @@ Support: info@sjr.ie
             "sale_stock_multi_warehouse/static/src/widgets/*.js",
         ],
     },
+    "images": [
+        "static/description/main_screenshot.png",
+    ],
     "installable": True,
     "auto_install": False,
     "license": "LGPL-3",
