@@ -3,7 +3,9 @@
 
     <t t-name="sale_stock_multi_warehouse.QtyAtDatePopover" t-inherit="sale_stock.QtyAtDatePopover" t-inherit-mode="extension">
         <xpath expr="//button[hasclass('btn-link')]" position="before">
-            <t t-if="props.warehouseStockInfo and props.warehouseStockInfo.length >= 1">
+            <t t-set="rawWarehouseStockInfo" t-value="props.record.data.warehouse_stock_info"/>
+            <t t-set="warehouseStockInfo" t-value="rawWarehouseStockInfo ? JSON.parse(rawWarehouseStockInfo) : []"/>
+            <t t-if="warehouseStockInfo.length >= 1">
                 <hr class="my-3" style="border-top: 1px solid #dee2e6;"/>
                 <div class="d-flex align-items-center mb-3">
                     <i class="fa fa-warehouse me-2" style="color: #6c757d; font-size: 1.1em;"/>
@@ -18,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="props.warehouseStockInfo" t-as="wh" t-key="wh.warehouse_id">
+                        <t t-foreach="warehouseStockInfo" t-as="wh" t-key="wh.warehouse_id">
                             <tr t-att-style="wh.is_current ? 'background-color: #e8f4fd;' : ''">
                                 <td style="padding: 6px 4px; vertical-align: middle;">
                                     <span t-out="wh.warehouse_name" t-att-style="wh.is_current ? 'font-weight: 500;' : ''"/>
@@ -37,11 +39,11 @@
                         <tr style="border-top: 2px solid #495057; background-color: #f8f9fa;">
                             <td style="padding: 8px 4px; font-weight: 700; color: #212529;">Total</td>
                             <td class="text-end" style="padding: 8px 4px; font-weight: 700;">
-                                <t t-set="total_available" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.free_qty, 0)"/>
+                                <t t-set="total_available" t-value="warehouseStockInfo.reduce((sum, wh) => sum + wh.free_qty, 0)"/>
                                 <span t-out="total_available" t-att-class="total_available &lt; 0 ? 'text-danger' : (total_available > 0 ? 'text-success' : '')"/>
                             </td>
                             <td class="text-end" style="padding: 8px 4px; font-weight: 700;">
-                                <t t-set="total_forecasted" t-value="props.warehouseStockInfo.reduce((sum, wh) => sum + wh.virtual_available, 0)"/>
+                                <t t-set="total_forecasted" t-value="warehouseStockInfo.reduce((sum, wh) => sum + wh.virtual_available, 0)"/>
                                 <span t-out="total_forecasted" t-att-class="total_forecasted &lt; 0 ? 'text-danger' : (total_forecasted > 0 ? 'text-success' : '')"/>
                             </td>
                         </tr>

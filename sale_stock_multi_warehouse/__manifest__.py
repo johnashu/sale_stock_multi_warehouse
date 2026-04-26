@@ -44,7 +44,6 @@ Support: info@sjr.ie
     "assets": {
         "web.assets_backend": [
             "sale_stock_multi_warehouse/static/src/widgets/*.xml",
-            "sale_stock_multi_warehouse/static/src/widgets/*.js",
         ],
     },
     "images": [
