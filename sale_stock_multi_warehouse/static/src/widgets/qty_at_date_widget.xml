@@ -3,8 +3,7 @@
 
     <t t-name="sale_stock_multi_warehouse.QtyAtDatePopover" t-inherit="sale_stock.QtyAtDatePopover" t-inherit-mode="extension">
         <xpath expr="//button[hasclass('btn-link')]" position="before">
-            <t t-set="rawWarehouseStockInfo" t-value="props.record.data.warehouse_stock_info"/>
-            <t t-set="warehouseStockInfo" t-value="rawWarehouseStockInfo ? JSON.parse(rawWarehouseStockInfo) : []"/>
+            <t t-set="warehouseStockInfo" t-value="props.record.data.warehouse_stock_info || []"/>
             <t t-if="warehouseStockInfo.length >= 1">
                 <hr class="my-3" style="border-top: 1px solid #dee2e6;"/>
                 <div class="d-flex align-items-center mb-3">

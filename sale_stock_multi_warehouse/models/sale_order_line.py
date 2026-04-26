@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
 from collections import defaultdict
 
 from odoo import api, fields, models
@@ -8,29 +7,28 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    warehouse_stock_info = fields.Text(
+    warehouse_stock_info = fields.Json(
         compute="_compute_warehouse_stock_info",
         string="Warehouse Stock Info",
-        help="JSON data containing stock information for all warehouses",
+        help="Stock information per warehouse, used by the qty-at-date popover.",
     )
 
     @api.depends("product_id", "scheduled_date", "order_id.warehouse_id", "order_id.company_id", "display_qty_widget")
     def _compute_warehouse_stock_info(self):
-        """Compute stock availability for all warehouses as JSON data."""
-        # Only get warehouses from the current company
+        """Compute stock availability for all warehouses."""
         company_id = self.env.company.id
         all_warehouses = self.env["stock.warehouse"].search([("company_id", "=", company_id)])
 
         if not all_warehouses:
             for line in self:
-                line.warehouse_stock_info = "[]"
+                line.warehouse_stock_info = []
             return
 
         lines_to_compute = self.filtered(lambda l: l.product_id and l.display_qty_widget)
         lines_without_product = self - lines_to_compute
 
         for line in lines_without_product:
-            line.warehouse_stock_info = "[]"
+            line.warehouse_stock_info = []
 
         if not lines_to_compute:
             return
@@ -92,4 +90,4 @@ class SaleOrderLine(models.Model):
 
             # Sort: current warehouse first, then by name
             stock_data.sort(key=lambda x: (not x["is_current"], x["warehouse_name"]))
-            line.warehouse_stock_info = json.dumps(stock_data)
+            line.warehouse_stock_info = stock_data
