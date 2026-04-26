@@ -10,7 +10,7 @@
                 <field name="warehouse_stock_info" invisible="1"/>
             </xpath>
             <!-- Add warehouse_stock_info field to tree view -->
-            <xpath expr="//page/field[@name='order_line']/tree/field[@name='display_qty_widget']" position="after">
+            <xpath expr="//page/field[@name='order_line']/list/field[@name='display_qty_widget']" position="after">
                 <field name="warehouse_stock_info" column_invisible="True"/>
             </xpath>
         </field>
