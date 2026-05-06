@@ -34,7 +34,7 @@ Company: SJR Nebula
 Website: https://sjr.ie
 Support: info@sjr.ie
     """,
-    "author": "SJR Nebula - John Ashurst",
+    "author": "SJR Nebula",
     "website": "https://sjr.ie",
     "support": "info@sjr.ie",
     "depends": ["sale_stock"],
