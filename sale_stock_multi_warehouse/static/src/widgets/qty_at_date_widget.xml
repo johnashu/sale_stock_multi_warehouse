@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <t t-name="sale_stock_multi_warehouse.QtyAtDatePopover" t-inherit="sale_stock.QtyAtDatePopover" t-inherit-mode="extension">
+    <t t-inherit="sale_stock.QtyAtDatePopover" t-inherit-mode="extension">
         <xpath expr="//button[hasclass('btn-link')]" position="before">
             <t t-set="warehouseStockInfo" t-value="props.record.data.warehouse_stock_info || []"/>
             <t t-if="warehouseStockInfo.length >= 1">
