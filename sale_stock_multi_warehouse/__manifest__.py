@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Sale Stock Multi-Warehouse Availability",
-    "version": "19.0.0.0.1",
+    "version": "19.0.0.0.2",
     "category": "Sales/Sales",
     "summary": "Show stock availability from all warehouses in Sales Order popup",
     "description": """
