@@ -16,11 +16,16 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "product_id",
+        "product_uom_qty",
         "scheduled_date",
         "warehouse_id",
         "order_id.warehouse_id",
         "order_id.company_id",
+        "order_id.commitment_date",
         "display_qty_widget",
+        "free_qty_today",
+        "qty_available_today",
+        "virtual_available_at_date",
     )
     def _compute_warehouse_stock_info(self):
         """Compute stock availability for all warehouses as JSON data."""
@@ -35,13 +40,13 @@ class SaleOrderLine(models.Model):
         if not lines_to_compute:
             return
 
-        # Resolve the (company, forecast date) key once per line so the grouping
-        # and lookup phases share the exact same fallback datetime.
+        # Use the same delivery date as sale_stock's _compute_qty_at_date so
+        # forecasted figures are evaluated at the same point in time.
         now = fields.Datetime.now()
         line_keys = {
             line: (
                 line.order_id.company_id.id or self.env.company.id,
-                line.scheduled_date or now,
+                line.order_id.commitment_date or line._expected_date() or now,
             )
             for line in lines_to_compute
         }
@@ -97,6 +102,7 @@ class SaleOrderLine(models.Model):
             product_id = line.product_id.id
             company_id, scheduled_date = line_keys[line]
             current_warehouse_id = line.warehouse_id.id if line.warehouse_id else False
+            use_line_qty_fields = line.state in ("draft", "sent")
 
             stock_data = []
             for warehouse in warehouses_by_company.get(
@@ -106,14 +112,31 @@ class SaleOrderLine(models.Model):
                     (company_id, scheduled_date, warehouse.id), {}
                 ).get(product_id, {})
 
-                qty_available = wh_stock.get("qty_available", 0)
-                free_qty = wh_stock.get("free_qty", 0)
-                virtual_available = wh_stock.get("virtual_available", 0)
+                is_current = warehouse.id == current_warehouse_id
+                if is_current and use_line_qty_fields:
+                    # Reuse sale_stock's line-level figures so the current
+                    # warehouse row matches the standard availability popup.
+                    free_qty = line.free_qty_today
+                    virtual_available = line.virtual_available_at_date
+                    qty_available = line.qty_available_today
+                else:
+                    qty_available = wh_stock.get("qty_available", 0)
+                    free_qty = wh_stock.get("free_qty", 0)
+                    virtual_available = wh_stock.get("virtual_available", 0)
+                    if line.product_uom and line.product_id.uom_id and line.product_uom != line.product_id.uom_id:
+                        qty_available = line.product_id.uom_id._compute_quantity(
+                            qty_available, line.product_uom
+                        )
+                        free_qty = line.product_id.uom_id._compute_quantity(
+                            free_qty, line.product_uom
+                        )
+                        virtual_available = line.product_id.uom_id._compute_quantity(
+                            virtual_available, line.product_uom
+                        )
 
                 has_stock = (
                     qty_available != 0 or free_qty != 0 or virtual_available != 0
                 )
-                is_current = warehouse.id == current_warehouse_id
 
                 if has_stock or is_current:
                     stock_data.append(
