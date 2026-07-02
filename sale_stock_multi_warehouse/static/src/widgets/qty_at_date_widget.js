@@ -7,7 +7,7 @@ import {
 import { patch } from "@web/core/utils/patch";
 
 export class QtyAtDatePopoverMultiWarehouse extends QtyAtDatePopover {
-    static template = "sale_stock_multi_warehouse.QtyAtDatePopover";
+    static template = "sale_stock.QtyAtDatePopover";
     static props = {
         record: Object,
         calcData: Object,
